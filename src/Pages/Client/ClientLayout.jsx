@@ -2,7 +2,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Dropdown from 'antd/es/dropdown'
 import { Collapse } from 'antd';
-import { FilterLabel } from '../../Components/FilterControls'
+import { FilterLabel, OperationType } from '../../Components/FilterControls'
 const { Panel } = Collapse
 import { MdKeyboardArrowDown, MdGpsFixed } from "react-icons/md";
 import { FaRegSquare, FaWhatsapp, FaDollarSign, FaCar } from "react-icons/fa";
@@ -10,9 +10,11 @@ import { FaHelmetSafety } from "react-icons/fa6";
 import { FiLayout } from "react-icons/fi";
 import { PiHouseLine, PiBathtub, PiToiletDuotone } from "react-icons/pi";
 import { LiaBedSolid } from "react-icons/lia";
+import { useState } from 'react';
 
 function ClientLayout() {
     const navigate = useNavigate()
+    const [operationTypeValue, setOperationTypeValue] = useState(null)
 
 
     const btnLogOut = () => {
@@ -33,7 +35,7 @@ function ClientLayout() {
 
 
     const filterOptions = [
-        { key: '1', label: 'Tipo de operación', children: text, icon: <FiLayout size={22} color='white' className='mr-2' /> },
+        { key: '1', label: 'Tipo de operación', children: <OperationType data={operationTypeValue} setData={setOperationTypeValue} />, icon: <FiLayout size={22} color='white' className='mr-2' /> },
         { key: '2', label: 'Tipo de propiedad', children: text, icon: <PiHouseLine size={22} color='white' className='mr-2' /> },
         { key: '3', label: 'Ubicación (es)', children: text, icon: <MdGpsFixed size={22} color='white' className='mr-2' /> },
         { key: '4', label: 'Precio total', children: text, icon: <FaDollarSign size={22} color='white' className='mr-2' /> },
